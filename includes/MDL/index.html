@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		 <meta charset="utf-8">
+		<link rel="stylesheet" href="material.min.css">
+		<script src="material.min.js"></script>
+		<link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+		<link href="bootstrap.min.css" rel="stylesheet">
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<!-- The drawer is always open in large screens. The header is always shown,
+  even in small screens. -->
+<div class="demo-layout">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+              mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+		  <span class="mdl-layout-title">Sistema Gerenciador de Acesso</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                    mdl-textfield--floating-label mdl-textfield--align-right">
+          <label class="mdl-button mdl-js-button mdl-button--icon"
+                 for="fixed-header-drawer-exp">
+            <i class="material-icons">search</i>
+          </label>
+          <div class="mdl-textfield__expandable-holder">
+            <input class="mdl-textfield__input" type="text" name="sample"
+                   id="fixed-header-drawer-exp" />
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer" style="background-color: #eee">
+      <span class="mdl-layout-title"><i class="material-icons">reorder</i> ADMINSTRAÇÃO </span>
+      <nav class="mdl-navigation">
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
+  Button
+</button>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+		<div class="demo-grid-1 mdl-grid">
+		  <div class="mdl-cell mdl-cell--2-col"></div>
+		  <div class="mdl-cell mdl-cell--8-col">
+			<div class="alert alert-success" role="alert">...</div>
+				<div class="panel panel-default">
+				  <div class="panel-heading">Panel heading without title</div>
+				  <div class="panel-body">
+					Panel content
+				  </div>
+				</div>
+		  </div>
+		  <div class="mdl-cell mdl-cell--2-col"></div>
+		  </div>
+    </main>
+  </div>
+</div>
+	</body>
+
+</html>

@@ -1,0 +1,61 @@
+.header_menu{
+                padding: 5px;
+                padding-left: 40px;
+                background-color: #5cb85c;
+                color: white;
+                font-weight: bold;
+                font-size: large;
+                
+            }
+
+            a.link_menu{
+                text-decoration: none;
+                margin-left: 50px;
+                padding-bottom: 5px;
+                padding-top: 5px;
+                display: inline-block;
+            }
+
+            a.link_menu_branco:link, a.link_menu:visited {
+
+                color: white;
+
+            }
+            .link_menu{
+                text-decoration: none;
+
+            }
+            a.link_menu:link, a.link_menu:visited {
+
+                color: white;
+            }
+            a.link_menu:hover {
+
+                color: #f00;
+            }
+            a.link_menu:active {
+
+            }
+
+            a.link_menu:link, a.link_menu:visited {
+
+            }
+            a.link_menu:hover {
+
+            }
+            a.link_menu:active {
+
+            }
+            .position_up_down{
+                float: right;
+                margin-right: 5px;
+            }
+
+
+
+.middle{
+   position: relative;
+   top: 4px;
+}
+
+    
