@@ -17,6 +17,7 @@
                 padding-bottom: 5px;
                 padding-top: 3px;
                 display: inline-block;
+                clear: left;
             }
 
             a.link_menu_branco:link, a.link_menu:visited {
