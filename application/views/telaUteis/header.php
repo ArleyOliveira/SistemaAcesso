@@ -108,7 +108,7 @@ even in small screens. -->
                         <span class="header_menu" id="professor" style="background-color: #428bca"><span class="glyphicon glyphicon-tasks"></span> Professor <span class="glyphicon glyphicon-chevron-down position_up_down" id="p"></span></span>
                         <div id="iconP">
                             
-                            <a id="newprofessor" href="<?php echo base_url("professor/cadastra"); ?>" class="link_menu"><span class="glyphicon glyphicon-plus-sign"></span> Novo professor </a>
+                            <a id="newprofessor" href="<?php echo base_url("professor/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-plus-sign"></span> Novo professor </a>
                             <a href="<?php echo base_url("professor/consultar"); ?>" class="link_menu"><span class="glyphicon glyphicon-search"></span> Consultar </a>
                             <a id="cadidentificador" href="<?php echo base_url("gerenciador/cadastrarIdentificador"); ?>" class="link_menu"><span class="glyphicon glyphicon-edit"></span> Cadastrar Identificador </a>
                             
