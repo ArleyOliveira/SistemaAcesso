@@ -1,5 +1,8 @@
 .header_menu{
-                padding: 5px;
+               
+                padding-right:  5px;
+                padding-top: 2px;
+                padding-bottom: 1px;
                 padding-left: 40px;
                 background-color: #5cb85c;
                 color: white;
@@ -10,9 +13,9 @@
 
             a.link_menu{
                 text-decoration: none;
-                margin-left: 50px;
+                margin-left: 40px;
                 padding-bottom: 5px;
-                padding-top: 5px;
+                padding-top: 3px;
                 display: inline-block;
             }
 

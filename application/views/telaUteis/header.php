@@ -110,10 +110,14 @@ even in small screens. -->
                             <a href="<?php echo base_url("professor/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-plus-sign"></span> Novo </a>
                             <br>
                             <a href="<?php echo base_url("professor/consultar"); ?>" class="link_menu"><span class="glyphicon glyphicon-search"></span> Consultar </a>
+                            <a href="<?php echo base_url("gerenciador/cadastrarIdentificador"); ?>" class="link_menu"><span class="glyphicon glyphicon-edit"></span> Cadastrar Identificador </a>
                         </div>
                         <span class="header_menu" id="acesso" style="background-color: #d9534f"><span class="glyphicon glyphicon-tasks"></span> Acesso <span class="glyphicon glyphicon-chevron-down position_up_down" id="a"></span></span>
                         <div id="iconA">
-                            <a href="<?php echo base_url("professor/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-user"></span> Novo acesso </a>
+                            <a href="<?php echo base_url("gerenciador/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-user"></span> Novo acesso </a>
+                            <a href="<?php echo base_url("gerenciador/consultar"); ?>" class="link_menu"><span class="glyphicon glyphicon-list-alt"></span> Horários </a>
+                            <a href="<?php echo base_url("semestre/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-plus-sign"></span> Novo semestre </a>
+                            <a href="<?php echo base_url("gerenciador/relatorio"); ?>" class="link_menu"><span class="glyphicon glyphicon-file"></span> Obter relatório </a>
                         </div>
                     </nav>
                 </div>

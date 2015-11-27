@@ -46,18 +46,36 @@
 		if($email != NULL):
 			$this->db->where('email', $email);
 			$this->db->limit(1);
-			return $this->db->get('usuario');
+			return $this->db->get('professor');
 		else:	
 			return false;
 		
 		endif;		
 	}
 	
+        public function get_byCodigo($codigo = NULL){
+		if($codigo != NULL):
+			$this->db->where('codigo', $codigo);
+			$this->db->limit(1);
+			return $this->db->get('professor')->result();
+		else:	
+			return false;
+		
+		endif;		
+	}
 	public function do_update($dados = NULL, $condicao = NULL){
 		if($dados != NULL && $condicao != NULL):
 			$this->db->update('professor', $dados, $condicao);
 			$this->session->nome = $dados['nome'];
 			$this->session->set_flashdata('edicaook', 'Dados alterado com sucesso!');
+			redirect(current_url());
+		endif;
+	}
+        public function do_updateIdentificador($dados = NULL, $condicao = NULL){
+		if($dados != NULL && $condicao != NULL):
+			$this->db->update('professor', $dados, $condicao);
+			$this->session->nome = $dados['nome'];
+			$this->session->set_flashdata('cadastrook', IconsUtil::getIcone(IconsUtil::ICON_OK).' Operação realizada com sucesso!');
 			redirect(current_url());
 		endif;
 	}
