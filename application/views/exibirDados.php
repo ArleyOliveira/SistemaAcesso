@@ -9,6 +9,7 @@ else
 //$this->load->view('telaUteis/menuLeft');
 //$this->load->view('telaUteis/conteudo');
 if($tela!='') $this->load->view($tela);
+$this->load->view('controleUsuario/controleAcessoFuncoes');
 if(isset($headerHorario))
     $this->load->view('telaUteis/footerHorario');
 else

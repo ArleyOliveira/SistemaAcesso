@@ -11,11 +11,11 @@
                 'data' : {'codigo' : codigo},
                 'success' : function(data){ //probably this request will return anything, it'll be put in var "data"
                     if(data != null && data != ''){
-                        $("#identificador").val(data);
+                        $("#identificador1").val(data);
                         alterarBotton(2);
                     }else{
                        //alert("Identififasdado não cadastrado!");
-                       $("#identificador").val("");
+                       $("#identificador1").val("");
                        alterarBotton(1);
                     }
                 }
@@ -31,12 +31,12 @@
                 $("#botao").html('<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar');
                 $("#botao").removeClass("btn-primary");
                 $("#botao").addClass("btn-warning");
-                $("#identificador").attr('readonly', true);  
+                $("#identificador1").attr('readonly', true);  
             }         
         }
 
-        $("#identificador").dblclick(function(){
-            $("#identificador").removeAttr('readonly');
+        $("#identificador1").dblclick(function(){
+            $("#identificador1").removeAttr('readonly');
         });
     });
 </script>
@@ -71,7 +71,7 @@ echo PainelUtil::getOpenPainel(IconsUtil::getIcone(IconsUtil::ICON_PLUS_SING) . 
         echo DivUtil::openDivRow();
             echo DivUtil::openDivColMod("col-md-8");
                 echo '<h4> <span class="label label-default"> Identificador * </span> </h4>';
-                echo form_input(array('id' => 'identificador', 'name' => 'identificador','class' => 'form-control', 'placeholder' => 'identificador'), set_value('identificador')).'<br>';
+                echo form_input(array('id' => 'identificador1', 'name' => 'identificador','class' => 'form-control', 'placeholder' => 'identificador'), set_value('identificador')).'<br>';
             echo DivUtil::closeDiv();
             echo DivUtil::openDivColMod("col-md-2");
                 ?>

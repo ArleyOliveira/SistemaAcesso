@@ -95,29 +95,32 @@ even in small screens. -->
                     <nav class="mdl-navigation">
                         <span class="header_menu" id="curso" style="background-color: #f0ad4e"><span class="glyphicon glyphicon-tasks"></span> Curso <span class="glyphicon glyphicon-chevron-down position_up_down" id="c"></span> </span>
                         <div id="iconC">
-                            <a href="<?php echo base_url("curso/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-plus-sign"></span> Novo </a>
-                            <br>
+                            <a id="newcurso" href="<?php echo base_url("curso/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-plus-sign"></span> Novo curso </a>
+                            
                             <a href="<?php echo base_url("curso/consultar"); ?>" class="link_menu"><span class="glyphicon glyphicon-search"></span> Consultar </a>
                         </div>
                         <span class="header_menu" id="disciplina"><span class="glyphicon glyphicon-tasks"></span> Disciplina <span class="glyphicon glyphicon-chevron-down position_up_down" id="d"></span></span>
                         <div id="iconD">
-                            <a href="<?php echo base_url("disciplina/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-plus-sign"></span> Novo </a>
-                            <br>
+                            <a id="newdisciplina" href="<?php echo base_url("disciplina/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-plus-sign"></span> Nova Disciplina </a>
                             <a href="<?php echo base_url("disciplina/consultar"); ?>" class="link_menu"><span class="glyphicon glyphicon-search"></span> Consultar </a>
                         </div>
+                        
                         <span class="header_menu" id="professor" style="background-color: #428bca"><span class="glyphicon glyphicon-tasks"></span> Professor <span class="glyphicon glyphicon-chevron-down position_up_down" id="p"></span></span>
                         <div id="iconP">
-                            <a href="<?php echo base_url("professor/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-plus-sign"></span> Novo </a>
-                            <br>
+                            
+                            <a id="newprofessor" href="<?php echo base_url("professor/cadastra"); ?>" class="link_menu"><span class="glyphicon glyphicon-plus-sign"></span> Novo professor </a>
                             <a href="<?php echo base_url("professor/consultar"); ?>" class="link_menu"><span class="glyphicon glyphicon-search"></span> Consultar </a>
-                            <a href="<?php echo base_url("gerenciador/cadastrarIdentificador"); ?>" class="link_menu"><span class="glyphicon glyphicon-edit"></span> Cadastrar Identificador </a>
+                            <a id="cadidentificador" href="<?php echo base_url("gerenciador/cadastrarIdentificador"); ?>" class="link_menu"><span class="glyphicon glyphicon-edit"></span> Cadastrar Identificador </a>
+                            
+                            
                         </div>
+                        
                         <span class="header_menu" id="acesso" style="background-color: #d9534f"><span class="glyphicon glyphicon-tasks"></span> Acesso <span class="glyphicon glyphicon-chevron-down position_up_down" id="a"></span></span>
                         <div id="iconA">
-                            <a href="<?php echo base_url("gerenciador/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-user"></span> Novo acesso </a>
+                            <a id="newacesso" href="<?php echo base_url("gerenciador/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-user"></span> Novo acesso </a>
                             <a href="<?php echo base_url("gerenciador/consultar"); ?>" class="link_menu"><span class="glyphicon glyphicon-list-alt"></span> Horários </a>
-                            <a href="<?php echo base_url("semestre/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-plus-sign"></span> Novo semestre </a>
-                            <a href="<?php echo base_url("gerenciador/relatorio"); ?>" class="link_menu"><span class="glyphicon glyphicon-file"></span> Obter relatório </a>
+                            <a id="newsemestre" href="<?php echo base_url("semestre/cadastrar"); ?>" class="link_menu"><span class="glyphicon glyphicon-plus-sign"></span> Novo semestre </a>
+                            <a id="getrelatorio" href="<?php echo base_url("gerenciador/relatorio"); ?>" class="link_menu"><span class="glyphicon glyphicon-file"></span> Obter relatório </a>
                         </div>
                     </nav>
                 </div>

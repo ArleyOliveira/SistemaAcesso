@@ -26,46 +26,49 @@ class Gerenciador extends CI_Controller {
         $this->form_validation->set_rules('lab', 'Laboratório', 'required');
         $this->form_validation->set_rules('inicio', 'Inicio', 'required');
         $this->form_validation->set_rules('fim', 'Fim', 'required');*/
-        
-        $disciplinas = $this->DisciplinaDAO->get_all();
-        $professores = $this->ProfessorDAO->get_all();
-        if(isset($_POST['dados'])) {
-            
-            $dados = json_decode($_POST['dados']);
-            
-            $semestre = $this->buscarSemestrarAtual();
-            
-            for($i=0; $i < sizeof($dados); $i++){
-                $lab = $dados[$i][1];
-                $dia = $dados[$i][0];
-                $inicio = $dados[$i][2];
-                $fim = $dados[$i][3];
-                $disciplina = $dados[$i][4];
-                $professor = $dados[$i][5];
-                $horario = array(
-                    'disciplina' => $disciplina,
-                    'professor' => $professor,
-                    'dia' => $dia,
-                    'lab' => $lab,
-                    'inicio' => $inicio,
-                    'fim' => $fim,
-                    'semestreletivo' => $semestre,
-                );
-                $this->HorarioDAO->do_insert($horario);
-            }
-            $this->session->set_flashdata('cadastrook', IconsUtil::getIcone(IconsUtil::ICON_OK) .' Cadastro efetuado com sucesso!');
-           
-            //echo 'Cadastro efetuado com sucesso';
-            //echo $dados[0][0] . '-' . $dados[0][1] . '-' . $dados[0][2] . '-' . $dados[0][3] . '-' . $dados[0][4] . '-' . $dados[0][5] . '-' . sizeof($dados) . '-' . $semestre; 
-        } 
-        
-        $dados = array(
-            'professores' => $professores,
-            'disciplinas' => $disciplinas,
-            'titulo' => 'Sistema de acesso - Cadastrar Acesso',
-            'tela' => 'gerenciador/acesso',
-        );
-        $this->load->view("exibirDados", $dados);
+        if($this->session->tipo == 2){
+            $disciplinas = $this->DisciplinaDAO->get_all();
+            $professores = $this->ProfessorDAO->get_all();
+            if(isset($_POST['dados'])) {
+
+                $dados = json_decode($_POST['dados']);
+
+                $semestre = $this->buscarSemestrarAtual();
+
+                for($i=0; $i < sizeof($dados); $i++){
+                    $lab = $dados[$i][1];
+                    $dia = $dados[$i][0];
+                    $inicio = $dados[$i][2];
+                    $fim = $dados[$i][3];
+                    $disciplina = $dados[$i][4];
+                    $professor = $dados[$i][5];
+                    $horario = array(
+                        'disciplina' => $disciplina,
+                        'professor' => $professor,
+                        'dia' => $dia,
+                        'lab' => $lab,
+                        'inicio' => $inicio,
+                        'fim' => $fim,
+                        'semestreletivo' => $semestre,
+                    );
+                    $this->HorarioDAO->do_insert($horario);
+                }
+                $this->session->set_flashdata('cadastrook', IconsUtil::getIcone(IconsUtil::ICON_OK) .' Cadastro efetuado com sucesso!');
+
+                //echo 'Cadastro efetuado com sucesso';
+                //echo $dados[0][0] . '-' . $dados[0][1] . '-' . $dados[0][2] . '-' . $dados[0][3] . '-' . $dados[0][4] . '-' . $dados[0][5] . '-' . sizeof($dados) . '-' . $semestre; 
+            } 
+
+            $dados = array(
+                'professores' => $professores,
+                'disciplinas' => $disciplinas,
+                'titulo' => 'Sistema de acesso - Cadastrar Acesso',
+                'tela' => 'gerenciador/acesso',
+            );
+            $this->load->view("exibirDados", $dados);
+        }else{
+             redirect("gerenciador/consultar");
+        }
     }
     
     public function enviar(){
