@@ -91,9 +91,9 @@
                     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1" style="padding-right: 50px">
                         <?php 
                             if($user->sexo == 'feminino')
-                              echo '<input type="radio" id="option-1" class="mdl-radio__button" name="sexo" value="feminino" checked />';
+                              echo '<input type="radio" id="option-1" class="mdl-radio__button" name="sexo" value="Feminino" checked />';
                             else
-                              echo '<input type="radio" id="option-1" class="mdl-radio__button" name="sexo" value="feminino"/>';   
+                              echo '<input type="radio" id="option-1" class="mdl-radio__button" name="sexo" value="Feminino"/>';   
                          ?>
                         <span class="mdl-radio__label">Feminino</span>
                     </label>
@@ -101,9 +101,9 @@
                     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
                         <?php
                             if($user->sexo == 'masculino')
-                               echo '<input type="radio" id="option-2" class="mdl-radio__button" name="sexo" value="masculino" checked/>';
+                               echo '<input type="radio" id="option-2" class="mdl-radio__button" name="sexo" value="Masculino" checked/>';
                             else
-                                echo '<input type="radio" id="option-2" class="mdl-radio__button" name="sexo" value="masculino" />';
+                                echo '<input type="radio" id="option-2" class="mdl-radio__button" name="sexo" value="Masculino" />';
                           ?>
                         <span class="mdl-radio__label">Masculino</span>
                     </label>

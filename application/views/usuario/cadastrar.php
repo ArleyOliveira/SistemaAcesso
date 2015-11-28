@@ -33,12 +33,12 @@ echo DivUtil::openDivColMod("col-md-10");
             ?>
                 <h4> <span class="label label-default">Sexo </span> </h4>
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1" style="padding-right: 50px">
-                    <input type="radio" id="option-1" class="mdl-radio__button" name="sexo" value="feminino" checked />
+                    <input type="radio" id="option-1" class="mdl-radio__button" name="sexo" value="Feminino" checked />
                     <span class="mdl-radio__label">Feminino</span>
                 </label>
                 
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                    <input type="radio" id="option-2" class="mdl-radio__button" name="sexo" value="masculino" />
+                    <input type="radio" id="option-2" class="mdl-radio__button" name="sexo" value="Masculino" />
                     <span class="mdl-radio__label">Masculino</span>
                 </label>
             <?php

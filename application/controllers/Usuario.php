@@ -61,14 +61,18 @@ class Usuario extends CI_Controller {
                $usuario = $this->UsuarioDAO->get_byEmail_Professor($dados['email'], $dados['senha']);
                 $tipo = 1;
             endif;
+            $sexo = '';
             if ($usuario != false):
                 foreach ($usuario->result() as $linha):
                     $nome = $linha->nome;
                     $email = $linha->email;
                     $permissao = $linha->permissao;
+                    $sexo = $linha->sexo;
+                                           
                 endforeach;
                 $novousuario = array(
                     'nome' => $nome,
+                    'sexo' => $sexo,
                     'email' => $email,
                     'permissao'=> $permissao,
                     'tipo' => $tipo,

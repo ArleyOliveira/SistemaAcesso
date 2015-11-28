@@ -64,7 +64,7 @@ even in small screens. -->
                     <div style="background-color: #222;" class="text-center" >
                         <div class="demo-drawer lor--blue-grey-900 mdl-color-text--blue-grey-50">
                             <header class="demo-drawer-header">
-                                <img src='<?php echo base_url("icons/user.jpg") ?>' class="img-circle">
+                                <img src="<?php echo base_url('icons/'.$this->session->sexo.'.jpg') ?>" class="img-circle">
                                 <div class="demo-avatar-dropdown">
                                     <span><?php echo $this->session->email; ?></span>
                                     <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
@@ -79,7 +79,7 @@ even in small screens. -->
                                         
                                         if($this->session->tipo == 2):
                                         ?>
-                                            <li class="mdl-menu__item"> <a href="<?php echo base_url("usuario/cadastrar"); ?>"><i class="material-icons">add</i>Adicionar usuário</a></li>
+                                            <li class="mdl-menu__item"> <a href="<?php echo base_url("usuario/cadastrar"); ?>"><i class="material-icons">perm_identity</i>Adicionar usuário</a></li>
                                         <?php
                                         endif;
                                         ?>
