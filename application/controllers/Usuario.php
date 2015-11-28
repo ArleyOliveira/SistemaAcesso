@@ -81,8 +81,9 @@ class Usuario extends CI_Controller {
                 //redirect('/');
             endif;
         }else {
-            $this->session->set_flashdata('usuarioinvalido', 'Os campos não foram preenchidos corretamente ou podem está vazios!');
-            //redirect('/');
+            if(isset($_POST['email']) || isset($_POST['senha']) || isset($_POST['tipo']))
+               $this->session->set_flashdata('usuarioinvalido', 'Os campos não foram preenchidos corretamente ou podem está vazios!');
+        
         }
         $this->load->view("login");
     }

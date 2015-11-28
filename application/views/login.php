@@ -75,12 +75,12 @@ $erroAlert = '';
                      ?>
                     <div class="panel panel-success" >
                             <div class="panel-heading">
-                                <div class="panel-title">IFNMG - SGA | Login</div>
+                                <div class="panel-title">Sis. Gerenciador de acesso | Login</div>
                                 <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Esqueceu a senha?</a></div>
                             </div>     
-                            
+
                             <div style="padding-top:30px" class="panel-body" >
-                                
+
                                 <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                                 <form id="loginform" class="form-horizontal" role="form" method="POST" action="<?php echo base_url('usuario/login') ?>">
                                         <div style="margin-bottom: 25px" class="input-group">
@@ -130,9 +130,6 @@ $erroAlert = '';
                                             </div>
                                         </div>    
                                     </form>     
-
-
-
                                 </div>                     
                             </div>  
                 </div>  
