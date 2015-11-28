@@ -62,4 +62,6 @@
    top: 4px;
 }
 
-    
+.scroll{
+  overflow-y: scroll;  
+}    
