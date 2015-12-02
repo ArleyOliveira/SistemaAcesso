@@ -122,6 +122,16 @@ class Gerenciador extends CI_Controller {
         }
     }
     
+    public function excluirHorario(){ 
+        if($this->session->tipo != 2)
+          redirect("gerenciador/consultar");
+        else{
+            $condicao = elements(array('codigo'), $this->input->post());
+            $this->HorarioDAO->do_delete($condicao);
+            $this->consultar();
+        }
+    }
+    
     public function consultar(){
        $semestreLetivo = $this->buscarSemestrarAtual();
        $lab1 = $this->HorarioDAO->get_PorLaboratorio(1, $semestreLetivo);
@@ -136,6 +146,24 @@ class Gerenciador extends CI_Controller {
             'lab4' => $lab4,
             'titulo' => 'Sistema de Acesso - Horários Consultar',
             'tela' => 'gerenciador/horarios',
+        );
+        $this->load->view("exibirDados", $dados);
+    }
+
+    public function editar(){
+       $semestreLetivo = $this->buscarSemestrarAtual();
+       $lab1 = $this->HorarioDAO->get_PorLaboratorio(1, $semestreLetivo);
+       $lab2 = $this->HorarioDAO->get_PorLaboratorio(2, $semestreLetivo);
+       $lab3 = $this->HorarioDAO->get_PorLaboratorio(3, $semestreLetivo);
+       $lab4 = $this->HorarioDAO->get_PorLaboratorio(4, $semestreLetivo);
+       $dados = array(
+            'headerHorario' => true,
+            'lab1' => $lab1,
+            'lab2' => $lab2,
+            'lab3' => $lab3,
+            'lab4' => $lab4,
+            'titulo' => 'Sistema de Acesso - Horários Consultar',
+            'tela' => 'gerenciador/horariosEditar',
         );
         $this->load->view("exibirDados", $dados);
     }

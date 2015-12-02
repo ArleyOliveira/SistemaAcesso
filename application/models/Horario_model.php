@@ -25,12 +25,12 @@
             $quinta = null;
             $sexta = null;
             $sabado = null;
-            $sql = "SELECT d.nome as disciplina, TIME_FORMAT(inicio, '%H:%i') as inicio, TIME_FORMAT(fim, '%H:%i') as fim FROM horario h join disciplina d on h.disciplina = d.codigo where lab = ? and semestreletivo = ? and dia = ? order by inicio";
+            $sql = "SELECT h.codigo, d.nome as disciplina, TIME_FORMAT(inicio, '%H:%i') as inicio, TIME_FORMAT(fim, '%H:%i') as fim FROM horario h join disciplina d on h.disciplina = d.codigo where lab = ? and semestreletivo = ? and dia = ? order by inicio";
 
             $query = $this->db->query($sql, array($lab, $semestreLetivo, 2));
             $x = 0;
             foreach ($query->result() as $horario) {
-               $segunda[$x] = array('disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
+               $segunda[$x] = array('codigo' => $horario->codigo,'disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
                $x++;
             }
 
@@ -39,35 +39,35 @@
             $query = $this->db->query($sql, array($lab, $semestreLetivo, 3));
             $x = 0;
             foreach ($query->result() as $horario) {
-               $terca[$x] = array('disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
+               $terca[$x] = array('codigo' => $horario->codigo, 'disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
                $x++;
             }
 
             $query = $this->db->query($sql, array($lab, $semestreLetivo, 4));
             $x = 0;
             foreach ($query->result() as $horario) {
-               $quarta[$x] = array('disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
+               $quarta[$x] = array('codigo' => $horario->codigo, 'disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
                $x++;
             }
 
             $query = $this->db->query($sql, array($lab, $semestreLetivo, 5));
             $x = 0;
             foreach ($query->result() as $horario) {
-               $quinta[$x] = array('disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
+               $quinta[$x] = array('codigo' => $horario->codigo, 'disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
                $x++;
             }
 
             $query = $this->db->query($sql, array($lab, $semestreLetivo, 6));
             $x = 0;
             foreach ($query->result() as $horario) {
-               $sexta[$x] = array('disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
+               $sexta[$x] = array('codigo' => $horario->codigo, 'disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
                $x++;
             }
 
             $query = $this->db->query($sql, array($lab, $semestreLetivo, 7));
             $x = 0;
             foreach ($query->result() as $horario) {
-               $sabado[$x] = array('disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
+               $sabado[$x] = array('codigo' => $horario->codigo, 'disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
                $x++;
             }
 
@@ -84,6 +84,13 @@
         else:
             return false;
 
+        endif;
+    }
+    
+    public function do_delete($condicao = NULL){
+        if($condicao != NULL):
+                $this->db->delete('horario', $condicao);
+                $this->session->set_flashdata('excluirok', IconsUtil::getIcone(IconsUtil::ICON_OK) .' Registro deletado com sucesso!');
         endif;
     }
 	

@@ -19,31 +19,35 @@ class Professor extends CI_Controller {
 
     public function cadastrar() {
         //Validação do formulario
-        $this->form_validation->set_rules('nome', 'Nome', 'trim|required|max_length[50]|ucwords');
-        $this->form_validation->set_rules('cpf', 'CPF', 'trim|required|max_length[11]|strtolower|is_unique[professor.cpf]');
-        $this->form_validation->set_rules('siape', 'SIAPE', 'trim|required|numeric|is_unique[professor.siape]');
-        $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|max_length[50]|strtolower|valid_email|is_unique[professor.email]|is_unique[usuario.email]');
-        $this->form_validation->set_rules('senha', 'SENHA', 'trim|required|strtolower');
-        $this->form_validation->set_rules('sexo', 'Sexo', 'required');
-        $this->form_validation->set_rules('datanasc', 'Data de Nascimento', 'trim|required');
-        $this->form_validation->set_message('matches', 'O campo %s não corresponde com o campo %s');
-        $this->form_validation->set_rules('senha2', 'REPITA A SENHA', 'trim|required|strtolower|matches[senha]');
+        if($this->session->tipo == 2){
+            $this->form_validation->set_rules('nome', 'Nome', 'trim|required|max_length[50]|ucwords');
+            $this->form_validation->set_rules('cpf', 'CPF', 'trim|required|max_length[11]|strtolower|is_unique[professor.cpf]');
+            $this->form_validation->set_rules('siape', 'SIAPE', 'trim|required|numeric|is_unique[professor.siape]');
+            $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|max_length[50]|strtolower|valid_email|is_unique[professor.email]|is_unique[usuario.email]');
+            $this->form_validation->set_rules('senha', 'SENHA', 'trim|required|strtolower');
+            $this->form_validation->set_rules('sexo', 'Sexo', 'required');
+            $this->form_validation->set_rules('datanasc', 'Data de Nascimento', 'trim|required');
+            $this->form_validation->set_message('matches', 'O campo %s não corresponde com o campo %s');
+            $this->form_validation->set_rules('senha2', 'REPITA A SENHA', 'trim|required|strtolower|matches[senha]');
 
 
-        if ($this->form_validation->run() == TRUE):
-            $dados = elements(array('nome','siape', 'cpf', 'datanasc', 'sexo', 'email', 'senha'), $this->input->post());
-            $dados['senha'] = md5($dados['senha']);
+            if ($this->form_validation->run() == TRUE):
+                $dados = elements(array('nome','siape', 'cpf', 'datanasc', 'sexo', 'email', 'senha'), $this->input->post());
+                $dados['senha'] = md5($dados['senha']);
 
-            $this->ProfessorDAO->do_insert($dados);
-            echo "Validação ok, inserir no bd";
+                $this->ProfessorDAO->do_insert($dados);
+                echo "Validação ok, inserir no bd";
 
-        endif;
+            endif;
 
-        $dados = array(
-            'titulo' => 'Sistema de acesso - Cadastrar Professor',
-            'tela' => 'professor/cadastrar',
-        );
-        $this->load->view("exibirDados", $dados);
+            $dados = array(
+                'titulo' => 'Sistema de acesso - Cadastrar Professor',
+                'tela' => 'professor/cadastrar',
+            );
+            $this->load->view("exibirDados", $dados);
+        }else{
+            redirect("gerenciador/consultar");
+        }
     }
 
     public function login() {
@@ -98,6 +102,7 @@ class Professor extends CI_Controller {
        
         if ($this->form_validation->run() == TRUE):
             $dados = elements(array('nome','siape' ,'cpf', 'datanasc', 'sexo'), $this->input->post());
+            $this->session->sexo = $dados['sexo'];
             $this->ProfessorDAO->do_update($dados, array('email' => $this->session->email));
         endif;
 

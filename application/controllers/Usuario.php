@@ -99,6 +99,7 @@ class Usuario extends CI_Controller {
        
         if ($this->form_validation->run() == TRUE):
             $dados = elements(array('nome', 'datanasc', 'sexo'), $this->input->post());
+            $this->session->sexo = $dados['sexo'];
             $this->UsuarioDAO->do_update($dados, array('email' => $this->session->email));
         endif;
 

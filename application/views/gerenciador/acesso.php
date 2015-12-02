@@ -1,4 +1,7 @@
-
+<?php 
+    if($this->session->tipo != 2)
+        redirect("gerenciador/consultar");
+ ?>
 <script type="text/javascript">
     $(document).ready(function(){
         horarios = [];
