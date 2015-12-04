@@ -33,9 +33,15 @@
   <ul class="nav nav-tabs nav-justified" role="tablist">
       <li role="presentation" class="<?php echo $perfil ?>"><a href="#perfil" aria-controls="perfil" role="tab" data-toggle="tab"><i class="material-icons">create</i> Perfil</a></li>
     <li role="presentation" class="<?php echo $senha ?>"><a href="#senha" aria-controls="senha" role="tab" data-toggle="tab"><i class="material-icons">security</i> Segurança</a></li>
-    <li role="presentation" class="<?php echo $useradmin ?>"><a href="#useradmin" aria-controls="useradmin" role="tab" data-toggle="tab"><i class="material-icons">person_add </i> Administrador</a></li>
-    <li role="presentation" class="<?php echo $outros ?>"><a href="#outros" aria-controls="outros" role="tab" data-toggle="tab"><i class="material-icons">settings</i>Mais</a></li>
-  </ul>
+    <?php
+        if($this->session->tipo == 2):
+       ?>        
+        <li role="presentation" class="<?php echo $useradmin ?>"><a href="#useradmin" aria-controls="useradmin" role="tab" data-toggle="tab"><i class="material-icons">person_add </i> Administrador</a></li>
+        <li role="presentation" class="<?php echo $outros ?>"><a href="#outros" aria-controls="outros" role="tab" data-toggle="tab"><i class="material-icons">settings</i>Mais</a></li>
+        <?php
+        endif;
+    ?>
+   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">

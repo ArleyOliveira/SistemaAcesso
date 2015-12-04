@@ -17,32 +17,37 @@ class Usuario extends CI_Controller {
     }
 
     public function cadastrar() {
-        //Validação do formulario
-        $this->form_validation->set_rules('nome', 'Nome', 'trim|required|max_length[50]|ucwords');
-        $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|max_length[50]|strtolower|valid_email|is_unique[usuario.email]');
-        $this->form_validation->set_rules('senha', 'SENHA', 'trim|required');
-        $this->form_validation->set_rules('sexo', 'Sexo', 'required');
-        $this->form_validation->set_rules('datanasc', 'Data de Nascimento', 'trim|required');
-        $this->form_validation->set_message('matches', 'O campo %s não corresponde com o campo %s');
-        $this->form_validation->set_rules('senha2', 'REPITA A SENHA', 'trim|required|matches[senha]');
+        if($this->session->tipo == 2){//Verifica de é administrador
+            //Validação do formulario
+            $this->form_validation->set_rules('nome', 'Nome', 'trim|required|max_length[50]|ucwords');
+            $this->form_validation->set_rules('email', 'EMAIL', 'trim|required|max_length[50]|strtolower|valid_email|is_unique[usuario.email]');
+            $this->form_validation->set_rules('senha', 'SENHA', 'trim|required');
+            $this->form_validation->set_rules('sexo', 'Sexo', 'required');
+            $this->form_validation->set_rules('datanasc', 'Data de Nascimento', 'trim|required');
+            $this->form_validation->set_message('matches', 'O campo %s não corresponde com o campo %s');
+            $this->form_validation->set_rules('senha2', 'REPITA A SENHA', 'trim|required|matches[senha]');
 
 
-        if ($this->form_validation->run() == TRUE):
-            $dados = elements(array('nome', 'datanasc', 'sexo', 'email', 'senha'), $this->input->post());
-            $dados['senha'] = md5($dados['senha']);
-            $imagem = $dados['nome'];
-            $imagem = $imagem[0];
+            if ($this->form_validation->run() == TRUE):
+                $dados = elements(array('nome', 'datanasc', 'sexo', 'email', 'senha'), $this->input->post());
+                $dados['senha'] = md5($dados['senha']);
+                $imagem = $dados['nome'];
+                $imagem = $imagem[0];
 
-            $this->UsuarioDAO->do_insert($dados);
-            echo "Validação ok, inserir no bd";
+                $this->UsuarioDAO->do_insert($dados);
+                echo "Validação ok, inserir no bd";
 
-        endif;
+            endif;
 
-        $dados = array(
-            'titulo' => 'Sistema de acesso - Cadastrar Usuario',
-            'tela' => 'usuario/cadastrar',
-        );
-        $this->load->view("exibirDados", $dados);
+            $dados = array(
+                'titulo' => 'Sistema de acesso - Cadastrar Usuario',
+                'tela' => 'usuario/cadastrar',
+            );
+            $this->load->view("exibirDados", $dados);
+        }else{
+            $this->session->set_flashdata('acessoinvalido', IconsUtil::getIcone(IconsUtil::ICON_ALERT) .' Acesso negado!');
+            redirect("gerenciador/consultar");
+        }
     }
 
     public function login() {

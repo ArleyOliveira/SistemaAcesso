@@ -67,11 +67,12 @@ class Gerenciador extends CI_Controller {
             );
             $this->load->view("exibirDados", $dados);
         }else{
+             $this->session->set_flashdata('acessoinvalido', IconsUtil::getIcone(IconsUtil::ICON_ALERT) .' Acesso negado!');
              redirect("gerenciador/consultar");
         }
     }
     
-    public function enviar(){
+    private function enviar(){
         $dados = elements(array(''), $this->input->post());
         
         $this->Horariodao->do_insert($dados);
@@ -93,20 +94,25 @@ class Gerenciador extends CI_Controller {
     }
     
     public function cadastrarIdentificador(){
-        $this->form_validation->set_rules('professor', 'Professor', 'required|numeric');
-        $this->form_validation->set_rules('identificador', 'Identificador', 'required');
-        if($this->form_validation->run() == TRUE):
-            $condicao = array('codigo' => $this->input->post("professor"));
-            $dados = array('identificador' => $this->input->post("identificador"));            
-            $this->ProfessorDAO->do_updateIdentificador($dados, $condicao);
-        endif;
-        $professores = $this->ProfessorDAO->get_all()->result();
-        $dados = array(
-            'professores' => $professores,
-            'titulo' => 'Sistema de Acesso - Cadastrar Identificador',
-            'tela' => 'gerenciador/cadastrarIdentificador',
-        );
-        $this->load->view("exibirDados", $dados);
+        if($this->session->tipo == 2){
+            $this->form_validation->set_rules('professor', 'Professor', 'required|numeric');
+            $this->form_validation->set_rules('identificador', 'Identificador', 'required');
+            if($this->form_validation->run() == TRUE):
+                $condicao = array('codigo' => $this->input->post("professor"));
+                $dados = array('identificador' => $this->input->post("identificador"));            
+                $this->ProfessorDAO->do_updateIdentificador($dados, $condicao);
+            endif;
+            $professores = $this->ProfessorDAO->get_all()->result();
+            $dados = array(
+                'professores' => $professores,
+                'titulo' => 'Sistema de Acesso - Cadastrar Identificador',
+                'tela' => 'gerenciador/cadastrarIdentificador',
+            );
+            $this->load->view("exibirDados", $dados);
+        }else{
+            $this->session->set_flashdata('acessoinvalido', IconsUtil::getIcone(IconsUtil::ICON_ALERT) .' Acesso negado!');
+            redirect("gerenciador/consultar");
+        }
     }
     
     public function consultaIdentificador(){
@@ -151,21 +157,27 @@ class Gerenciador extends CI_Controller {
     }
 
     public function editar(){
-       $semestreLetivo = $this->buscarSemestrarAtual();
-       $lab1 = $this->HorarioDAO->get_PorLaboratorio(1, $semestreLetivo);
-       $lab2 = $this->HorarioDAO->get_PorLaboratorio(2, $semestreLetivo);
-       $lab3 = $this->HorarioDAO->get_PorLaboratorio(3, $semestreLetivo);
-       $lab4 = $this->HorarioDAO->get_PorLaboratorio(4, $semestreLetivo);
-       $dados = array(
-            'headerHorario' => true,
-            'lab1' => $lab1,
-            'lab2' => $lab2,
-            'lab3' => $lab3,
-            'lab4' => $lab4,
-            'titulo' => 'Sistema de Acesso - Horários Consultar',
-            'tela' => 'gerenciador/horariosEditar',
-        );
-        $this->load->view("exibirDados", $dados);
+       if($this->session->tipo == 2){
+            $semestreLetivo = $this->buscarSemestrarAtual();
+            $lab1 = $this->HorarioDAO->get_PorLaboratorio(1, $semestreLetivo);
+            $lab2 = $this->HorarioDAO->get_PorLaboratorio(2, $semestreLetivo);
+            $lab3 = $this->HorarioDAO->get_PorLaboratorio(3, $semestreLetivo);
+            $lab4 = $this->HorarioDAO->get_PorLaboratorio(4, $semestreLetivo);
+            $dados = array(
+                 'headerHorario' => true,
+                 'lab1' => $lab1,
+                 'lab2' => $lab2,
+                 'lab3' => $lab3,
+                 'lab4' => $lab4,
+                 'titulo' => 'Sistema de Acesso - Horários Consultar',
+                 'tela' => 'gerenciador/horariosEditar',
+             );
+             $this->load->view("exibirDados", $dados);
+       }else{
+            $this->session->set_flashdata('acessoinvalido', IconsUtil::getIcone(IconsUtil::ICON_ALERT) .' Acesso negado!');
+            redirect("gerenciador/consultar");
+        }
+       
     }
 
     public function buscarSemestrarAtual(){
@@ -173,8 +185,7 @@ class Gerenciador extends CI_Controller {
         $codigo = -1;
         foreach ($semestre->result() as $s) {
             $codigo = $s->codigo;
-        }
-        
+        }        
         return $codigo;
     }
 }

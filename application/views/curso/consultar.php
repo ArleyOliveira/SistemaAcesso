@@ -23,6 +23,13 @@
     <div class="col-md-4"></div>
 </div>
 <?php
+
+if ($this->session->flashdata('cadastrook')):
+    echo ModMensagemUtil::getAlertMensagemClose(ModMensagemUtil::ALERT_WARNING);
+    echo $this->session->flashdata('acessoinvalido');
+    echo ModMensagemUtil::getCloseAlertMensagem();
+endif;
+
 if ($this->session->flashdata('edicaook')):
     echo ModMensagemUtil::getAlertMensagemClose(ModMensagemUtil::ALERT_SUCCESS);
     echo $this->session->flashdata('edicaook');

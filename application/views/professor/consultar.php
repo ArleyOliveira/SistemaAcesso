@@ -1,3 +1,10 @@
+<?php
+    if ($this->session->flashdata('acessoinvalido')):
+        echo ModMensagemUtil::getAlertMensagemClose(ModMensagemUtil::ALERT_WARNING);
+        echo $this->session->flashdata('acessoinvalido');
+        echo ModMensagemUtil::getCloseAlertMensagem();
+    endif;
+?>
 <div class="scroll">
     <ol class="breadcrumb">
       <li>Professor</li>

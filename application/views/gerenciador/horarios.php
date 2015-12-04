@@ -1,4 +1,9 @@
 <?php
+    if ($this->session->flashdata('acessoinvalido')):
+        echo ModMensagemUtil::getAlertMensagemClose(ModMensagemUtil::ALERT_WARNING);
+        echo $this->session->flashdata('acessoinvalido');
+        echo ModMensagemUtil::getCloseAlertMensagem();
+    endif;
     if($this->session->tipo == 2){
     ?>
         <div class="row">

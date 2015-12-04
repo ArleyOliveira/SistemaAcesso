@@ -46,6 +46,7 @@ class Professor extends CI_Controller {
             );
             $this->load->view("exibirDados", $dados);
         }else{
+            $this->session->set_flashdata('acessoinvalido', IconsUtil::getIcone(IconsUtil::ICON_ALERT) .' Acesso negado!');
             redirect("gerenciador/consultar");
         }
     }
