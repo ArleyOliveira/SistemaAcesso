@@ -73,10 +73,10 @@ $erroAlert = '';
                             //$erroAlert = 'form-group has-warning has-feedback';
                         endif;
                      ?>
-                    <div class="panel panel-success" >
+                    <div class="panel panel-primary" >
                             <div class="panel-heading">
                                 <div class="panel-title">Sis. Gerenciador de acesso | Login</div>
-                                <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Esqueceu a senha?</a></div>
+                                
                             </div>     
 
                             <div style="padding-top:30px" class="panel-body" >
@@ -121,11 +121,8 @@ $erroAlert = '';
 
                                         <div class="form-group">
                                             <div class="col-md-12 control">
-                                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                                                    Não tem uma conta! 
-                                                <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
-                                                    Crie uma agora.
-                                                </a>
+                                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" class="text-center" >
+                                                    <a href="http://www.ifnmg.edu.br/januaria"> IFNMG - CAMPUS JANUÁRIA </a>
                                                 </div>
                                             </div>
                                         </div>    

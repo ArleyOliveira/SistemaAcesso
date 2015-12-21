@@ -84,6 +84,7 @@ class Usuario extends CI_Controller {
                     'esta_logado' => TRUE,
                 );
                 $this->session->set_userdata($novousuario);
+                
                 redirect('inicio/home');
             else:
                 $this->session->set_flashdata('usuarioinvalido', 'Usuário ou senha invalido. Tente novamente!');
