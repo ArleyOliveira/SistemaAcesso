@@ -52,6 +52,23 @@
 		
 		endif;		
 	}
+        
+        public function get_byIdentificador($identificador = NULL){
+		if($identificador != NULL):
+			$this->db->where('identificador', $identificador);
+			$this->db->limit(1);
+                        
+			$query = $this->db->get('professor');
+                        if($query->num_rows() > 0 && $query->num_rows() == 1):
+				return $query;
+			else:
+				return false;
+			endif;
+		else:	
+			return false;
+		
+		endif;		
+	}
 	
         public function get_byCodigo($codigo = NULL){
 		if($codigo != NULL):

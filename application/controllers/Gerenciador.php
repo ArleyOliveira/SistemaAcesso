@@ -16,26 +16,27 @@ class Gerenciador extends CI_Controller {
         $this->load->model('Professor_model', 'ProfessorDAO');
         $this->load->model('Horario_model', 'HorarioDAO');
         $this->load->model("Semestre_model", "SemestreDAO");
-    }   
-    
-    function cadastrar(){
-        
-        /*$this->form_validation->set_rules('disciplina', 'Disciplina', 'required');
-        $this->form_validation->set_rules('professor', 'Professor', 'required');
-        $this->form_validation->set_rules('dia', 'Dia', 'required');
-        $this->form_validation->set_rules('lab', 'Laboratório', 'required');
-        $this->form_validation->set_rules('inicio', 'Inicio', 'required');
-        $this->form_validation->set_rules('fim', 'Fim', 'required');*/
-        if($this->session->tipo == 2){
+        $this->load->model("Acesso_model", "AcessoDAO");
+    }
+
+    function cadastrar() {
+
+        /* $this->form_validation->set_rules('disciplina', 'Disciplina', 'required');
+          $this->form_validation->set_rules('professor', 'Professor', 'required');
+          $this->form_validation->set_rules('dia', 'Dia', 'required');
+          $this->form_validation->set_rules('lab', 'Laboratório', 'required');
+          $this->form_validation->set_rules('inicio', 'Inicio', 'required');
+          $this->form_validation->set_rules('fim', 'Fim', 'required'); */
+        if ($this->session->tipo == 2) {
             $disciplinas = $this->DisciplinaDAO->get_all();
             $professores = $this->ProfessorDAO->get_all();
-            if(isset($_POST['dados'])) {
+            if (isset($_POST['dados'])) {
 
                 $dados = json_decode($_POST['dados']);
 
                 $semestre = $this->buscarSemestrarAtual();
 
-                for($i=0; $i < sizeof($dados); $i++){
+                for ($i = 0; $i < sizeof($dados); $i++) {
                     $lab = $dados[$i][1];
                     $dia = $dados[$i][0];
                     $inicio = $dados[$i][2];
@@ -53,11 +54,11 @@ class Gerenciador extends CI_Controller {
                     );
                     $this->HorarioDAO->do_insert($horario);
                 }
-                $this->session->set_flashdata('cadastrook', IconsUtil::getIcone(IconsUtil::ICON_OK) .' Cadastro efetuado com sucesso!');
+                $this->session->set_flashdata('cadastrook', IconsUtil::getIcone(IconsUtil::ICON_OK) . ' Cadastro efetuado com sucesso!');
 
                 //echo 'Cadastro efetuado com sucesso';
                 //echo $dados[0][0] . '-' . $dados[0][1] . '-' . $dados[0][2] . '-' . $dados[0][3] . '-' . $dados[0][4] . '-' . $dados[0][5] . '-' . sizeof($dados) . '-' . $semestre; 
-            } 
+            }
 
             $dados = array(
                 'professores' => $professores,
@@ -66,15 +67,15 @@ class Gerenciador extends CI_Controller {
                 'tela' => 'gerenciador/acesso',
             );
             $this->load->view("exibirDados", $dados);
-        }else{
-             $this->session->set_flashdata('acessoinvalido', IconsUtil::getIcone(IconsUtil::ICON_ALERT) .' Acesso negado!');
-             redirect("gerenciador/consultar");
+        } else {
+            $this->session->set_flashdata('acessoinvalido', IconsUtil::getIcone(IconsUtil::ICON_ALERT) . ' Acesso negado!');
+            redirect("gerenciador/consultar");
         }
     }
-    
-    private function enviar(){
+
+    private function enviar() {
         $dados = elements(array(''), $this->input->post());
-        
+
         $this->Horariodao->do_insert($dados);
 
         $dados = array(
@@ -83,23 +84,24 @@ class Gerenciador extends CI_Controller {
         );
         $this->load->view("exibirDados", $dados);
     }
-    
-    public function relatorio(){
-        
+
+    public function relatorio() {
+        $acessos = $this->AcessoDAO->get_all();
         $dados = array(
             'titulo' => 'Sistema de Acesso - Obter relatório',
             'tela' => 'gerenciador/relatorio',
+            'acessos' => $acessos,
         );
         $this->load->view("exibirDados", $dados);
     }
-    
-    public function cadastrarIdentificador(){
-        if($this->session->tipo == 2){
+
+    public function cadastrarIdentificador() {
+        if ($this->session->tipo == 2) {
             $this->form_validation->set_rules('professor', 'Professor', 'required|numeric');
             $this->form_validation->set_rules('identificador', 'Identificador', 'required');
-            if($this->form_validation->run() == TRUE):
+            if ($this->form_validation->run() == TRUE):
                 $condicao = array('codigo' => $this->input->post("professor"));
-                $dados = array('identificador' => $this->input->post("identificador"));            
+                $dados = array('identificador' => $this->input->post("identificador"));
                 $this->ProfessorDAO->do_updateIdentificador($dados, $condicao);
             endif;
             $professores = $this->ProfessorDAO->get_all()->result();
@@ -109,17 +111,17 @@ class Gerenciador extends CI_Controller {
                 'tela' => 'gerenciador/cadastrarIdentificador',
             );
             $this->load->view("exibirDados", $dados);
-        }else{
-            $this->session->set_flashdata('acessoinvalido', IconsUtil::getIcone(IconsUtil::ICON_ALERT) .' Acesso negado!');
+        }else {
+            $this->session->set_flashdata('acessoinvalido', IconsUtil::getIcone(IconsUtil::ICON_ALERT) . ' Acesso negado!');
             redirect("gerenciador/consultar");
         }
     }
-    
-    public function consultaIdentificador(){
-        if(isset($_POST['codigo'])) {
+
+    public function consultaIdentificador() {
+        if (isset($_POST['codigo'])) {
             $query = $this->ProfessorDAO->get_byCodigo($_POST['codigo']);
             $identificador = NULL;
-            if($query != false){
+            if ($query != false) {
                 foreach ($query as $professor):
                     $identificador = $professor->identificador;
                 endforeach;
@@ -127,24 +129,24 @@ class Gerenciador extends CI_Controller {
             }
         }
     }
-    
-    public function excluirHorario(){ 
-        if($this->session->tipo != 2)
-          redirect("gerenciador/consultar");
-        else{
+
+    public function excluirHorario() {
+        if ($this->session->tipo != 2)
+            redirect("gerenciador/consultar");
+        else {
             $condicao = elements(array('codigo'), $this->input->post());
             $this->HorarioDAO->do_delete($condicao);
             $this->consultar();
         }
     }
-    
-    public function consultar(){
-       $semestreLetivo = $this->buscarSemestrarAtual();
-       $lab1 = $this->HorarioDAO->get_PorLaboratorio(1, $semestreLetivo);
-       $lab2 = $this->HorarioDAO->get_PorLaboratorio(2, $semestreLetivo);
-       $lab3 = $this->HorarioDAO->get_PorLaboratorio(3, $semestreLetivo);
-       $lab4 = $this->HorarioDAO->get_PorLaboratorio(4, $semestreLetivo);
-       $dados = array(
+
+    public function consultar() {
+        $semestreLetivo = $this->buscarSemestrarAtual();
+        $lab1 = $this->HorarioDAO->get_PorLaboratorio(1, $semestreLetivo);
+        $lab2 = $this->HorarioDAO->get_PorLaboratorio(2, $semestreLetivo);
+        $lab3 = $this->HorarioDAO->get_PorLaboratorio(3, $semestreLetivo);
+        $lab4 = $this->HorarioDAO->get_PorLaboratorio(4, $semestreLetivo);
+        $dados = array(
             'headerHorario' => true,
             'lab1' => $lab1,
             'lab2' => $lab2,
@@ -156,37 +158,36 @@ class Gerenciador extends CI_Controller {
         $this->load->view("exibirDados", $dados);
     }
 
-    public function editar(){
-       if($this->session->tipo == 2){
+    public function editar() {
+        if ($this->session->tipo == 2) {
             $semestreLetivo = $this->buscarSemestrarAtual();
             $lab1 = $this->HorarioDAO->get_PorLaboratorio(1, $semestreLetivo);
             $lab2 = $this->HorarioDAO->get_PorLaboratorio(2, $semestreLetivo);
             $lab3 = $this->HorarioDAO->get_PorLaboratorio(3, $semestreLetivo);
             $lab4 = $this->HorarioDAO->get_PorLaboratorio(4, $semestreLetivo);
             $dados = array(
-                 'headerHorario' => true,
-                 'lab1' => $lab1,
-                 'lab2' => $lab2,
-                 'lab3' => $lab3,
-                 'lab4' => $lab4,
-                 'titulo' => 'Sistema de Acesso - Horários Consultar',
-                 'tela' => 'gerenciador/horariosEditar',
-             );
-             $this->load->view("exibirDados", $dados);
-       }else{
-            $this->session->set_flashdata('acessoinvalido', IconsUtil::getIcone(IconsUtil::ICON_ALERT) .' Acesso negado!');
+                'headerHorario' => true,
+                'lab1' => $lab1,
+                'lab2' => $lab2,
+                'lab3' => $lab3,
+                'lab4' => $lab4,
+                'titulo' => 'Sistema de Acesso - Horários Consultar',
+                'tela' => 'gerenciador/horariosEditar',
+            );
+            $this->load->view("exibirDados", $dados);
+        } else {
+            $this->session->set_flashdata('acessoinvalido', IconsUtil::getIcone(IconsUtil::ICON_ALERT) . ' Acesso negado!');
             redirect("gerenciador/consultar");
         }
-       
     }
 
-    public function buscarSemestrarAtual(){
+    public function buscarSemestrarAtual() {
         $semestre = $this->SemestreDAO->get_SemestreAtual();
         $codigo = -1;
         foreach ($semestre->result() as $s) {
             $codigo = $s->codigo;
-        }        
+        }
         return $codigo;
     }
-}
 
+}

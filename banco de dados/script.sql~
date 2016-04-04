@@ -55,5 +55,16 @@ create table horario(
     semestreletivo int    
 );
 
+CREATE TABLE acessos(
+    codigo int auto_increment PRIMARY KEY,
+    professor int not null,
+    laboratorio int not null,
+    entrada TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP,
+    saida TIMESTAMP null,
+    FOREIGN KEY (professor) REFERENCES professor(codigo)
+);
+
 CREATE VIEW disciplinas as select d.codigo as disciplinaCodigo, d.nome as disciplina, c.codigo as cursoCodigo, c.nome as curso from disciplina d join curso c on d.curso = c.codigo;
+
+CREATE view acessosLab as Select p.nome as professor, laboratorio,  DATE_FORMAT(entrada, '%d/%m/%Y') as data, DATE_FORMAT(entrada, '%H:%i:%s') as entrada, saida from acessos a join professor p on a.professor = p.codigo ORDER by entrada
 
