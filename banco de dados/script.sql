@@ -66,5 +66,5 @@ CREATE TABLE acessos(
 
 CREATE VIEW disciplinas as select d.codigo as disciplinaCodigo, d.nome as disciplina, c.codigo as cursoCodigo, c.nome as curso from disciplina d join curso c on d.curso = c.codigo;
 
-CREATE view acessosLab as Select p.nome as professor, laboratorio,  DATE_FORMAT(entrada, '%d/%m/%Y') as data, DATE_FORMAT(entrada, '%H:%i:%s') as entrada, saida from acessos a join professor p on a.professor = p.codigo ORDER by entrada
+CREATE view acessosLab as Select p.nome as professor, laboratorio,  DATE_FORMAT(entrada, '%d/%m/%Y') as data, DATE_FORMAT(entrada, '%H:%i:%s') as entrada, DATE_FORMAT(saida, '%H:%i:%s') as saida from acessos a join professor p on a.professor = p.codigo ORDER by entrada;
 

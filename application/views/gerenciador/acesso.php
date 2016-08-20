@@ -186,8 +186,7 @@ echo PainelUtil::getOpenPainel(IconsUtil::getIcone(IconsUtil::ICON_PLUS_SING) . 
     echo DivUtil::openDivRow();
         echo '<div id="disciplinaGroup" class="col-md-12">';
             echo '<h4> <span class="label label-default"> Disciplina * </span> </h4>';
-            echo '<select class="form-control" id="dis" name="disciplina">
-                <option value="0" selected="selected">Selecione uma disciplina</option>';
+            echo '<select class="form-control select2" id="dis" name="disciplina">';
             foreach ($disciplinas->result() as $disciplina) :
                 echo '<option value="'.$disciplina->disciplinaCodigo.'"> '.$disciplina->disciplina .' - '. $disciplina->curso . '</option>';
             endforeach;
@@ -198,8 +197,7 @@ echo PainelUtil::getOpenPainel(IconsUtil::getIcone(IconsUtil::ICON_PLUS_SING) . 
     echo DivUtil::openDivRow();
         echo '<div id="professorGroup" class="col-md-8">';
             echo '<h4> <span class="label label-default"> Professor *</span> </h4>';
-            echo '<select class="form-control" id="prof" name="professor">
-                <option value="0" selected="selected">Selecione um professor(a)</option>';
+            echo '<select class="form-control select2" id="prof" name="professor">';
             foreach ($professores->result() as $professor) :
                 echo '<option value="'.$professor->codigo.'"> '.$professor->nome. '</option>';
             endforeach;
@@ -257,7 +255,7 @@ echo PainelUtil::getOpenPainel(IconsUtil::getIcone(IconsUtil::ICON_PLUS_SING) . 
         echo DivUtil::openDivColMod("col-md-3 text-right");  
 ?>
 </br> 
-        <button id ="addHorario" class="mdl-button mdl-js-button mdl-button--fab mdl-button--primary">
+        <button id ="addHorario" title="Adicionar horário" class="mdl-button mdl-js-button mdl-button--fab mdl-button--primary has_tooltip">
             <i class="material-icons">add</i>
         </button>
 <?php
@@ -277,7 +275,7 @@ echo PainelUtil::getOpenPainel(IconsUtil::getIcone(IconsUtil::ICON_PLUS_SING) . 
         echo DivUtil::closeDivRow();
         echo DivUtil::openDivColMod("col-md-8");
           echo '<div class="text-right">';
-                echo '<button type="button"  id="enviar" class="btn btn-success btn-block">'. IconsUtil::getIcone(IconsUtil::ICON_SALVAR).' Salvar</button>';
+                echo '<button type="button" title="Efetivar o salvamento do(s) horário(s)."  id="enviar" class="btn btn-success btn-block has_tooltip">'. IconsUtil::getIcone(IconsUtil::ICON_SALVAR).' Salvar</button>';
           echo '</div>';  
         echo DivUtil::closeDivRow();
         echo DivUtil::openDivColMod("col-md-2");

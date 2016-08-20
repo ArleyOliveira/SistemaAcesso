@@ -1,8 +1,6 @@
  <script type="text/javascript">
     var controller = 'curso';
-    var base_url = '<?php echo site_url(); //you have to load the "url_helper" to use this function ?>';
-    function excluir(codigo){
-        $('#carregar').addClass("mdl-spinner is-active");
+    var excluir = function (codigo){
         $.ajax({
             'url' : base_url + '/' + controller + '/excluir',
             'type' : 'POST', //the way you want to send data to your URL
@@ -58,10 +56,11 @@ endif;
                     echo $curso->area;
                 echo '</td>';
                 echo '<td>';
-                    echo   '<a href="'.  base_url('curso/editar/'.$curso->codigo).'"> <i class="material-icons">create</i></a>';
+                    echo   '<a href="'.  base_url('curso/editar/'.$curso->codigo).'" class="has_tooltip" title="Editar este curso"> <i class="material-icons" >create</i></a>';
                 echo '</td>';
                 echo '<td>';
-                    echo   '<a href="" onclick="excluir('.$curso->codigo.')"> <i class="material-icons">clear</i></a>';
+                    echo '<input class="idElement" type="hidden" value="'.$curso->codigo.'">';
+                    echo   '<a href="" class="has_tooltip excluir" title="Excluir este curso"> <i class="material-icons">clear</i></a>';
                 echo '</td>';
             echo '</tr>';
             

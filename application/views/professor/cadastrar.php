@@ -32,7 +32,7 @@ echo DivUtil::openDivColMod("col-md-10");
     echo DivUtil::openDivRow();
         echo DivUtil::openDivColMod("col-md-6");
             echo '<h4> <span class="label label-default">Data de Nascimento </span> </h4>';
-            echo form_input(array('id' => 'datanasc', 'type' => 'date', 'name' => 'datanasc', 'class' => 'form-control', 'placeholder' => ''), set_value('datanasc'));
+            echo form_input(array('id' => 'datanasc', 'name' => 'datanasc', 'class' => 'form-control datepicker', 'placeholder' => 'dd/mm/aaaa'), set_value('datanasc'));
            
         echo DivUtil::closeDiv();
     echo DivUtil::closeDivRow();

@@ -11,7 +11,7 @@
 <script type="text/javascript">    
     var controller = 'gerenciador';
     var base_url = '<?php echo site_url(); //you have to load the "url_helper" to use this function ?>';
-    function excluir(codigo){        
+    function excluir(codigo){
         $('#carregar').addClass("mdl-spinner is-active");
         $.ajax({
             'url' : base_url + '/' + controller + '/excluirHorario',

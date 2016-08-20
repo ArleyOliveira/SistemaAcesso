@@ -34,7 +34,7 @@ class Professor extends CI_Controller {
             if ($this->form_validation->run() == TRUE):
                 $dados = elements(array('nome','siape', 'cpf', 'datanasc', 'sexo', 'email', 'senha'), $this->input->post());
                 $dados['senha'] = md5($dados['senha']);
-
+                $dados['datanasc'] = date_create_from_format('d/m/Y', $dados['datanasc'])->format('Y-m-d');
                 $this->ProfessorDAO->do_insert($dados);
                 echo "Validação ok, inserir no bd";
 
@@ -103,6 +103,7 @@ class Professor extends CI_Controller {
        
         if ($this->form_validation->run() == TRUE):
             $dados = elements(array('nome','siape' ,'cpf', 'datanasc', 'sexo'), $this->input->post());
+            $dados['datanasc'] = date_create_from_format('d/m/Y', $dados['datanasc'])->format('Y-m-d');
             $this->session->sexo = $dados['sexo'];
             $this->ProfessorDAO->do_update($dados, array('email' => $this->session->email));
         endif;

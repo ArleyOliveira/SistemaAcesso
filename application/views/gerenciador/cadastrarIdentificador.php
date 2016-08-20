@@ -60,7 +60,7 @@ echo PainelUtil::getOpenPainel(IconsUtil::getIcone(IconsUtil::ICON_PLUS_SING) . 
         echo DivUtil::openDivRow();
             echo DivUtil::openDivColMod("col-md-8");
                 echo '<h4> <span class="label label-default"> Professor *</span> </h4>';
-                echo '<select class="form-control" id="prof" name="professor">
+                echo '<select class="form-control select2" id="prof" name="professor">
                     <option value="" selected="selected">Selecione um professor(a)</option>';
                 foreach ($professores as $professor) :
                     echo '<option value="'.$professor->codigo.'">'.$professor->nome. '</option>';
