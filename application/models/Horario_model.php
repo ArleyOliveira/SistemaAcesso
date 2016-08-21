@@ -37,12 +37,12 @@ class Horario_model extends CI_Model
                 }
 
                 return array(
-                    'segunda' => $horario[2],
-                    'terca' => $horario[3],
-                    'quarta' => $horario[4],
-                    'quinta' => $horario[5],
-                    'sexta' => $horario[6],
-                    'sabado' => $horario[7],
+                    2 => $horario[2],
+                    3 => $horario[3],
+                    4 => $horario[4],
+                    5 => $horario[5],
+                    6 => $horario[6],
+                    7 => $horario[7],
                 );
 
             }
