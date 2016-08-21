@@ -59,7 +59,12 @@
                         <thead>
                         <tr>
                             <th>Disciplina</th>
+<<<<<<< HEAD
                             <th class="text-center" colspan="2">Horário</th>
+=======
+                            <th class="text-center">Horário</th>
+                            <th></th>
+>>>>>>> ba5ada1c9537958dbdc1c6205b5dc6f3c5ec67c1
                         </tr>
                         </thead>
                         <tbody>
@@ -76,7 +81,11 @@
                                     ?>
                                 </td>
                                 <td class="text-center"><?php echo $horarioDia[$h]['inicio'] . ' - ' . $horarioDia[$h]['fim'] ?></td>
+<<<<<<< HEAD
                                 <td class="text-center"> <a onclick="excluir(<?php echo $horarioDia[$h]['codigo'];?>)"><?php echo IconsUtil::getIcone(IconsUtil::ICON_REMOVE)?></a></td>
+=======
+                                <td class="text-center" > <a onclick="excluir(<?php echo $horarioDia[$h]['codigo'];?>)"><?php echo IconsUtil::getIcone(IconsUtil::ICON_REMOVE)?></a></td>
+>>>>>>> ba5ada1c9537958dbdc1c6205b5dc6f3c5ec67c1
                             </tr>
                             <?php
                         }
