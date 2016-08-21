@@ -81,4 +81,3 @@ if ($this->session->tipo == 2) {
         </table>
 <?php } ?>
 </div>
-

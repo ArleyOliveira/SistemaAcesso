@@ -138,7 +138,6 @@ class Gerenciador extends CI_Controller {
         for($i = 1; $i <= 4; $i++){
             $horarios[$i] =  array('lab' => $i, 'horariosLab' => $this->HorarioDAO->get_PorLaboratorio($i, $semestreLetivo));
         }
-//        var_dump($horarios);
         $dados = array(
             'headerHorario' => true,
             'horarios' => $horarios,
@@ -152,16 +151,13 @@ class Gerenciador extends CI_Controller {
     public function editar() {
         if ($this->session->tipo == 2) {
             $semestreLetivo = $this->buscarSemestrarAtual();
-            $lab1 = $this->HorarioDAO->get_PorLaboratorio(1, $semestreLetivo);
-            $lab2 = $this->HorarioDAO->get_PorLaboratorio(2, $semestreLetivo);
-            $lab3 = $this->HorarioDAO->get_PorLaboratorio(3, $semestreLetivo);
-            $lab4 = $this->HorarioDAO->get_PorLaboratorio(4, $semestreLetivo);
+            $horarios = null;
+            for($i = 1; $i <= 4; $i++){
+                $horarios[$i] =  array('lab' => $i, 'horariosLab' => $this->HorarioDAO->get_PorLaboratorio($i, $semestreLetivo));
+            }
             $dados = array(
                 'headerHorario' => true,
-                'lab1' => $lab1,
-                'lab2' => $lab2,
-                'lab3' => $lab3,
-                'lab4' => $lab4,
+                'horarios' => $horarios,
                 'titulo' => 'Sistema de Acesso - Horários Consultar',
                 'tela' => 'gerenciador/horariosEditar',
             );
