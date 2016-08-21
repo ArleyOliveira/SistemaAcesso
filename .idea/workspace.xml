@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4436e57-b79b-4fab-bb30-347dfee9f585" name="Default" comment="" />
+    <list default="true" id="a4436e57-b79b-4fab-bb30-347dfee9f585" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="SistemaAcesso.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -29,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="horariosEditar.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="horariosEditar.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/gerenciador/horariosEditar.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="51" column="21" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="21" />
+            <state relative-caret-position="415">
+              <caret line="96" column="16" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -54,18 +56,18 @@
       <file leaf-file-name="horarios.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/gerenciador/horarios.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1254">
+            <state relative-caret-position="674">
               <caret line="82" column="6" selection-start-line="82" selection-start-column="6" selection-end-line="82" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gerenciador.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Gerenciador.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Gerenciador.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
-              <caret line="159" column="40" selection-start-line="159" selection-start-column="40" selection-end-line="159" selection-end-column="40" />
+            <state relative-caret-position="469">
+              <caret line="154" column="35" selection-start-line="154" selection-start-column="35" selection-end-line="154" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -348,12 +350,12 @@
       <workItem from="1471696161879" duration="4000" />
       <workItem from="1471696187748" duration="22348000" />
       <workItem from="1471722753837" duration="8396000" />
-      <workItem from="1471822443256" duration="953000" />
+      <workItem from="1471822443256" duration="1098000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33332000" />
+    <option name="totallyTimeSpent" value="33477000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="24" width="1307" height="744" extended-state="6" />
@@ -704,14 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/gerenciador/horariosEditar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="51" column="21" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/models/Horario_model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -722,18 +716,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Gerenciador.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="154" column="35" selection-start-line="154" selection-start-column="35" selection-end-line="154" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/gerenciador/horarios.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1254">
+        <state relative-caret-position="674">
           <caret line="82" column="6" selection-start-line="82" selection-start-column="6" selection-end-line="82" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Gerenciador.php">
+    <entry file="file://$PROJECT_DIR$/application/views/gerenciador/horariosEditar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="159" column="40" selection-start-line="159" selection-start-column="40" selection-end-line="159" selection-end-column="40" />
+        <state relative-caret-position="415">
+          <caret line="96" column="16" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
           <folding />
         </state>
       </provider>
