@@ -28,7 +28,7 @@ if ($this->session->tipo == 2) {
                 <th> Segunda</th>
                 <th> Terça</th>
                 <th> Quarta</th>
-                <th> Quinda</th>
+                <th> Quinta</th>
                 <th> Sexta</th>
             </tr>
             </thead>
