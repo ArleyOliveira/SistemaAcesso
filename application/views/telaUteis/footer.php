@@ -12,5 +12,6 @@
                     </div>
                  </div>
         </div>
+        <script src="<?php echo base_url('includes/my_js/script.js') ?>"></script>
     </body>
 </html>

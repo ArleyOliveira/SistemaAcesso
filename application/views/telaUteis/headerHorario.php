@@ -5,28 +5,45 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <script src="<?php echo base_url('includes/MDL/material.min.js') ?>"></script> 
+        <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+        <script src="<?php echo base_url('includes/jquery/jquery-2.1.4.min.js') ?>"></script>
+
+        <script src="<?php echo base_url('includes/MDL/material.min.js') ?>"></script>
         <link rel="stylesheet" href="<?php echo base_url('includes/MDL/material.min.css') ?>">
         <link rel="stylesheet" href="<?php echo base_url('includes/MDL/font.css') ?>">
         <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons"> -->
 
-        <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
-        <script src="<?php echo base_url('includes/jquery/jquery-2.1.4.min.js') ?>"></script>
         <!-- Bootstrap -->
+        <script src="<?php echo base_url('includes/bootstrap/js/bootstrap.min.js') ?>"></script>
         <link rel="stylesheet" href="<?php echo base_url('includes/bootstrap/css/bootstrap.min.css') ?>">
+
+        <!-- Select2-->
+        <script src="<?php echo base_url('includes/select2/js/select2.min.js') ?>"> </script>
+        <link rel="stylesheet" href="<?php echo base_url('includes/select2/css/select2.min.css') ?>">
+
+        <script src="<?php echo base_url('includes/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>"></script>
+        <script src="<?php echo base_url('includes/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js') ?>"></script>
+
+        <!-- Jquery-ui-->
+        <!--
+        <script src="<?php echo base_url('includes/jquery-ui/jquery-ui.min.js') ?>"> </script>
+        <link rel="stylesheet" href="<?php echo base_url('includes/jquery-ui/jquery-ui.min.css') ?>">-->
+
+        <link rel="stylesheet" href="<?php echo base_url('includes/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') ?>">
+
+
 
         <!-- My css -->
         <link rel="stylesheet" href="<?php echo base_url('includes/my_css/style.css') ?>">
 
-        <script src="<?php echo base_url('includes/my_js/jquery.maskedinput.js') ?>"></script>
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="<?php echo base_url('includes/bootstrap/js/bootstrap.min.js') ?>"></script>
 
-        <link rel="stylesheet" href="<?php echo base_url('includes/jquery1/jquery-ui.css') ?>">
+        <!--<script src="<?php echo base_url('includes/my_js/jquery.maskedinput.js') ?>"></script>-->
 
-        <script src="<?php echo base_url('includes/jquery1/jquery-ui.js') ?>"></script>
+        <!--<link rel="stylesheet" href="<?php echo base_url('includes/jquery1/jquery-ui.css') ?>">-->
 
-        <script src="<?php echo base_url('includes/jquery1/external/jquery/jquery.js') ?>"></script>
+        <!--<script src="<?php echo base_url('includes/jquery1/jquery-ui.js') ?>"></script>-->
+
+        <!--<script src="<?php echo base_url('includes/jquery1/external/jquery/jquery.js') ?>"></script>-->
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--
@@ -35,9 +52,12 @@
         -->
 
         <title> <?php echo $titulo; ?> </title>
-        <script src="<?php echo base_url('includes/my_js/script.js') ?>"></script>
+
     </head>
     <body>
+    <script>
+        var base_url = '<?php echo site_url() ?>';
+    </script>
         <!-- The drawer is always open in large screens. The header is always shown,
 even in small screens. -->
         <div class="demo-layout">

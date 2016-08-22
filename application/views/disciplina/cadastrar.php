@@ -29,7 +29,7 @@
                                 echo '
                                         <div class="form-group">
                                           <label for="sel1">Curso </label>
-                                          <select class="form-control" id="sel1" name="curso">
+                                          <select class="form-control select2" id="sel1" name="curso">
                                             <option selected="selected">Selecione uma opção</option>';
 
                                                 foreach ($cursos->result() as $row):

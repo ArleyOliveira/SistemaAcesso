@@ -1,97 +1,63 @@
 <?php
- defined('BASEPATH') OR exit('No direct script access allowed');
- 
- class Horario_model extends CI_Model{
- 	
-	public function do_insert($dados=NULL){
-		
-		if($dados != NULL):
-			$this->db->insert('horario', $dados);
-			//$this->session->set_flashdata('cadastrook', IconsUtil::getIcone(IconsUtil::ICON_OK) .' Cadastro efetuado com sucesso!');
-			//redirect('gerenciador/cadastrar');
-		endif;
-	}
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-	public function get_all(){
-		return $this->db->get('horario');
-	}
-	
-       
-        public function get_PorLaboratorio($lab = NULL, $semestreLetivo = NULL) {
-        if ($lab != NULL && $semestreLetivo != NULL):
-            $segunda = null;
-            $terca = null;
-            $quarta = null;
-            $quinta = null;
-            $sexta = null;
-            $sabado = null;
-            $sql = "SELECT h.codigo, d.nome as disciplina, TIME_FORMAT(inicio, '%H:%i') as inicio, TIME_FORMAT(fim, '%H:%i') as fim FROM horario h join disciplina d on h.disciplina = d.codigo where lab = ? and semestreletivo = ? and dia = ? order by inicio";
+class Horario_model extends CI_Model
+{
 
-            $query = $this->db->query($sql, array($lab, $semestreLetivo, 2));
-            $x = 0;
-            foreach ($query->result() as $horario) {
-               $segunda[$x] = array('codigo' => $horario->codigo,'disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
-               $x++;
-            }
+    public function do_insert($dados = NULL)
+    {
+
+        if ($dados != NULL):
+            $this->db->insert('horario', $dados);
+            //$this->session->set_flashdata('cadastrook', IconsUtil::getIcone(IconsUtil::ICON_OK) .' Cadastro efetuado com sucesso!');
+            //redirect('gerenciador/cadastrar');
+        endif;
+    }
+
+    public function get_all()
+    {
+        return $this->db->get('horario');
+    }
 
 
-            //echo "passou aki";
-            $query = $this->db->query($sql, array($lab, $semestreLetivo, 3));
-            $x = 0;
-            foreach ($query->result() as $horario) {
-               $terca[$x] = array('codigo' => $horario->codigo, 'disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
-               $x++;
-            }
+    public function get_PorLaboratorio($lab = NULL, $semestreLetivo = NULL)
+    {
+        try {
 
-            $query = $this->db->query($sql, array($lab, $semestreLetivo, 4));
-            $x = 0;
-            foreach ($query->result() as $horario) {
-               $quarta[$x] = array('codigo' => $horario->codigo, 'disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
-               $x++;
-            }
+            if ($lab != NULL && $semestreLetivo != NULL) {
 
-            $query = $this->db->query($sql, array($lab, $semestreLetivo, 5));
-            $x = 0;
-            foreach ($query->result() as $horario) {
-               $quinta[$x] = array('codigo' => $horario->codigo, 'disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
-               $x++;
-            }
+                for ($i = 2; $i <= 7; $i++) {
+                    $horario[$i] = array();
+                    $sql = "SELECT h.codigo, d.nome as disciplina, TIME_FORMAT(inicio, '%H:%i') as inicio, TIME_FORMAT(fim, '%H:%i') as fim FROM horario h join disciplina d on h.disciplina = d.codigo where lab = ? and semestreletivo = ? and dia = ? order by inicio";
+                    $query = $this->db->query($sql, array($lab, $semestreLetivo, $i));
 
-            $query = $this->db->query($sql, array($lab, $semestreLetivo, 6));
-            $x = 0;
-            foreach ($query->result() as $horario) {
-               $sexta[$x] = array('codigo' => $horario->codigo, 'disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
-               $x++;
-            }
+                    foreach ($query->result() as $key=> $value) {
+                        $horario[$i][] = (array('codigo' => $value->codigo, 'disciplina' => $value->disciplina, 'inicio' => $value->inicio, 'fim' => $value->fim));
+                    }
+                }
 
-            $query = $this->db->query($sql, array($lab, $semestreLetivo, 7));
-            $x = 0;
-            foreach ($query->result() as $horario) {
-               $sabado[$x] = array('codigo' => $horario->codigo, 'disciplina' => $horario->disciplina, 'inicio' => $horario->inicio, 'fim' => $horario->fim);
-               $x++;
-            }
-
-                $horariosLab = array(
-                    'segunda' => $segunda,
-                    'terca' => $terca,
-                    'quarta' => $quarta,
-                    'quinta' => $quinta,
-                    'sexta' => $sexta,
-                    'sabado' => $sabado,
+                return array(
+                    2 => $horario[2],
+                    3 => $horario[3],
+                    4 => $horario[4],
+                    5 => $horario[5],
+                    6 => $horario[6],
+                    7 => $horario[7],
                 );
-                return $horariosLab;
- 
-        else:
-            return false;
 
+            }
+        }catch (Exception $e){
+            echo "Ocorreu um erro ao tentar buscar os horários agendados!";
+        }
+        return false;
+    }
+
+    public function do_delete($condicao = NULL)
+    {
+        if ($condicao != NULL):
+            $this->db->delete('horario', $condicao);
+            $this->session->set_flashdata('excluirok', IconsUtil::getIcone(IconsUtil::ICON_OK) . ' Registro deletado com sucesso!');
         endif;
     }
-    
-    public function do_delete($condicao = NULL){
-        if($condicao != NULL):
-                $this->db->delete('horario', $condicao);
-                $this->session->set_flashdata('excluirok', IconsUtil::getIcone(IconsUtil::ICON_OK) .' Registro deletado com sucesso!');
-        endif;
-    }
-	
+
 }

@@ -1,14 +1,12 @@
  <script type="text/javascript">    
     var controller = 'disciplina';
     var base_url = '<?php echo site_url(); //you have to load the "url_helper" to use this function ?>';
-    function excluir(codigo){        
-        $('#carregar').addClass("mdl-spinner is-active");
+    excluir = function (codigo){
         $.ajax({
             'url' : base_url + '/' + controller + '/excluir',
             'type' : 'POST', //the way you want to send data to your URL
             'data' : {'codigo' : codigo},
             'success' : function(data){ //probably this request will return anything, it'll be put in var "data"
-                
             }
         });
     }
@@ -60,10 +58,11 @@ endif;
                 echo $disciplina->curso;
             echo '</td>';
             echo '<td>';
-                echo   '<a href="'.  base_url('disciplina/editar/'.$disciplina->disciplinaCodigo).'"> <i class="material-icons">create</i></a>';;
+                echo   '<a href="'.  base_url('disciplina/editar/'.$disciplina->disciplinaCodigo).'" class="has_tooltip " title="Editar esta disciplina"> <i class="material-icons">create</i></a>';;
             echo '</td>';
             echo '<td>';
-                echo   '<a href="" onclick="excluir('.$disciplina->disciplinaCodigo.')"> <i class="material-icons">clear</i></a>';
+                echo '<input class="idElement" type="hidden" value="'.$disciplina->disciplinaCodigo.'">';
+                echo   '<a href="" class="has_tooltip excluir" title="Excluir este curso"> <i class="material-icons">clear</i></a>';
             echo '</td>';
         echo '</tr>';
     endforeach;

@@ -21,12 +21,6 @@ class Gerenciador extends CI_Controller {
 
     function cadastrar() {
 
-        /* $this->form_validation->set_rules('disciplina', 'Disciplina', 'required');
-          $this->form_validation->set_rules('professor', 'Professor', 'required');
-          $this->form_validation->set_rules('dia', 'Dia', 'required');
-          $this->form_validation->set_rules('lab', 'Laboratório', 'required');
-          $this->form_validation->set_rules('inicio', 'Inicio', 'required');
-          $this->form_validation->set_rules('fim', 'Fim', 'required'); */
         if ($this->session->tipo == 2) {
             $disciplinas = $this->DisciplinaDAO->get_all();
             $professores = $this->ProfessorDAO->get_all();
@@ -56,8 +50,6 @@ class Gerenciador extends CI_Controller {
                 }
                 $this->session->set_flashdata('cadastrook', IconsUtil::getIcone(IconsUtil::ICON_OK) . ' Cadastro efetuado com sucesso!');
 
-                //echo 'Cadastro efetuado com sucesso';
-                //echo $dados[0][0] . '-' . $dados[0][1] . '-' . $dados[0][2] . '-' . $dados[0][3] . '-' . $dados[0][4] . '-' . $dados[0][5] . '-' . sizeof($dados) . '-' . $semestre; 
             }
 
             $dados = array(
@@ -142,35 +134,30 @@ class Gerenciador extends CI_Controller {
 
     public function consultar() {
         $semestreLetivo = $this->buscarSemestrarAtual();
-        $lab1 = $this->HorarioDAO->get_PorLaboratorio(1, $semestreLetivo);
-        $lab2 = $this->HorarioDAO->get_PorLaboratorio(2, $semestreLetivo);
-        $lab3 = $this->HorarioDAO->get_PorLaboratorio(3, $semestreLetivo);
-        $lab4 = $this->HorarioDAO->get_PorLaboratorio(4, $semestreLetivo);
+        $horarios = null;
+        for($i = 1; $i <= 4; $i++){
+            $horarios[$i] =  array('lab' => $i, 'horariosLab' => $this->HorarioDAO->get_PorLaboratorio($i, $semestreLetivo));
+        }
         $dados = array(
             'headerHorario' => true,
-            'lab1' => $lab1,
-            'lab2' => $lab2,
-            'lab3' => $lab3,
-            'lab4' => $lab4,
+            'horarios' => $horarios,
             'titulo' => 'Sistema de Acesso - Horários Consultar',
-            'tela' => 'gerenciador/horarios',
+            'tela' => 'gerenciador/horarios'
         );
+        
         $this->load->view("exibirDados", $dados);
     }
 
     public function editar() {
         if ($this->session->tipo == 2) {
             $semestreLetivo = $this->buscarSemestrarAtual();
-            $lab1 = $this->HorarioDAO->get_PorLaboratorio(1, $semestreLetivo);
-            $lab2 = $this->HorarioDAO->get_PorLaboratorio(2, $semestreLetivo);
-            $lab3 = $this->HorarioDAO->get_PorLaboratorio(3, $semestreLetivo);
-            $lab4 = $this->HorarioDAO->get_PorLaboratorio(4, $semestreLetivo);
+            $horarios = null;
+            for($i = 1; $i <= 4; $i++){
+                $horarios[$i] =  array('lab' => $i, 'horariosLab' => $this->HorarioDAO->get_PorLaboratorio($i, $semestreLetivo));
+            }
             $dados = array(
                 'headerHorario' => true,
-                'lab1' => $lab1,
-                'lab2' => $lab2,
-                'lab3' => $lab3,
-                'lab4' => $lab4,
+                'horarios' => $horarios,
                 'titulo' => 'Sistema de Acesso - Horários Consultar',
                 'tela' => 'gerenciador/horariosEditar',
             );

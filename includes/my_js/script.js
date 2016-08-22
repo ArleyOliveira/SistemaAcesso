@@ -55,4 +55,27 @@ $(document).ready(function () {
 	    controleA = 0;
 	}
     });
+
+	$('.datepicker').datepicker({
+		language: 'pt-BR',
+		format: "dd/mm/yyyy"
+	});
+
+	$('.has_tooltip').tooltip();
+	$(".select2").select2();
+
+	$(document).ready(function(){
+		$(".excluir").click(function(event) {
+			var apagar = confirm('Deseja realmente excluir este registro?');
+			if (apagar){
+				$codigo = $(this).parent().find('.idElement').val();
+				$('#carregar').addClass("mdl-spinner is-active");
+				excluir($codigo);
+			}else{
+				event.preventDefault();
+			}
+		});
+	});
+
 });
+

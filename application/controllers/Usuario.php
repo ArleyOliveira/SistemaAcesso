@@ -14,6 +14,7 @@ class Usuario extends CI_Controller {
         //$this->load->library('session');
         $this->load->model('Usuario_model', 'UsuarioDAO');
         $this->load->library('table');
+        $this->load->helper('date');
     }
 
     public function cadastrar() {
@@ -33,9 +34,8 @@ class Usuario extends CI_Controller {
                 $dados['senha'] = md5($dados['senha']);
                 $imagem = $dados['nome'];
                 $imagem = $imagem[0];
-
+                $dados['datanasc'] = date_create_from_format('d/m/Y', $dados['datanasc'])->format('Y-m-d');
                 $this->UsuarioDAO->do_insert($dados);
-                echo "Validação ok, inserir no bd";
 
             endif;
 
@@ -104,7 +104,9 @@ class Usuario extends CI_Controller {
         $this->form_validation->set_rules('datanasc', 'Data de Nascimento', 'trim|required');
        
         if ($this->form_validation->run() == TRUE):
+            ///var_dump($this->input->post('datanasc')); die;
             $dados = elements(array('nome', 'datanasc', 'sexo'), $this->input->post());
+            $dados['datanasc'] = date_create_from_format('d/m/Y', $dados['datanasc'])->format('Y-m-d');
             $this->session->sexo = $dados['sexo'];
             $this->UsuarioDAO->do_update($dados, array('email' => $this->session->email));
         endif;
